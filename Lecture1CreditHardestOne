@@ -1,0 +1,80 @@
+// Luhn’s Algorithm
+// All American Express numbers start with 34 or 37; most MasterCard numbers start with 51, 52, 53, 54, or 55; and all Visa numbers start with 4
+// According to Luhn’s algorithm, you can determine if a credit card number is (syntactically) valid as follows:
+// Multiply every other digit by 2, starting with the number’s second-to-last digit, and then add those products’ digits together.
+// Add the sum to the sum of the digits that weren’t multiplied by 2.
+// If the total’s last digit is 0 (or, put more formally, if the total modulo 10 is congruent to 0), the number is valid!
+
+#include <cs50.h>
+#include <stdio.h>
+
+int main(void)
+{
+    long n = get_long("Number: ");
+    int i = 0;
+    long cc = n;
+    while (cc>0)
+    {
+        cc=cc/10;
+        i++;
+    }
+    // Check if length is valid
+    if (i!=13 && i!=15 && i!=16)
+    {
+        printf("INVALID \n");
+        return 0;
+    }
+    //sum1 is sum underlined, sum2 is from the end
+    int sum1 = 0;
+    int sum2 = 0;
+    long x = n;
+    int sum = 0;
+    int mod1;
+    int mod2;
+    int d1;
+    int d2;
+
+    do 
+    {
+        mod1 = x%10;
+        x = x/10;
+        sum1 = sum1 + mod1;
+
+        mod2 = x % 10;
+        x = x / 10;
+        
+        mod2 = mod2 * 2;
+        d1 = mod2 % 10;
+        d2 = mod2 / 10;
+        sum2 = sum2 + d1 + d2;
+    } 
+    while (x>0);
+    sum = sum1+sum2;
+    // Next check Luhn Algorithm
+    if (sum%10 != 0)
+    {
+    printf ("INVALID \n");
+    }
+    long firsttwo = n;
+    do
+    {
+        firsttwo = firsttwo/10;
+    }
+    while (firsttwo>100);
+    if ((firsttwo / 10 == 5) && (0 < firsttwo%10 && firsttwo%10 <6))
+    {
+        printf("MASTERCARD \n");
+    }
+    else if (firsttwo / 10 == 4)
+    {
+        printf("VISA \n");
+    }
+    else if ((firsttwo == 34) || (firsttwo == 35))
+    {
+        printf("American Express \n");
+    }
+    else
+    {
+        printf("INVALID \n");
+    }
+}
