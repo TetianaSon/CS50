@@ -21,7 +21,7 @@ int main(void)
     // Check if length is valid
     if (i!=13 && i!=15 && i!=16)
     {
-        printf("INVALID \n");
+        printf("INVALID\n");
         return 0;
     }
     //sum1 is sum underlined, sum2 is from the end
@@ -63,18 +63,18 @@ int main(void)
     while (firsttwo>100);
     if ((firsttwo / 10 == 5) && (0 < firsttwo%10 && firsttwo%10 <6))
     {
-        printf("MASTERCARD \n");
+        printf("MASTERCARD\n");
     }
     else if (firsttwo / 10 == 4)
     {
-        printf("VISA \n");
+        printf("VISA\n");
     }
     else if ((firsttwo == 34) || (firsttwo == 37))
     {
-        printf("American Express \n");
+        printf("AMEX\n");
     }
     else
     {
-        printf("INVALID \n");
+        printf("INVALID\n");
     }
 }
